@@ -18,7 +18,7 @@
     "devDependencies": {
         "@babel/core": "7.15.8",
         "@parcel/transformer-raw": "2.0.0-alpha.3",
-        "@parcel/transformer-sass": "2.0.0-beta.2",
+        "@parcel/transformer-sass": "2.0.0-rc.0",
         "@types/react": "17.0.27",
         "@types/react-dom": "17.0.9",
         "parcel": "2.0.0-rc.0",
