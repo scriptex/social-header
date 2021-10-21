@@ -1,14 +1,16 @@
 {
     "name": "social-header",
     "version": "1.0.0",
-    "main": "index.js",
     "license": "MIT",
     "scripts": {
-        "start": "parcel index.html --port 4200 --no-cache",
-        "build": "parcel build index.html"
+        "start": "parcel src/index.html --port 4200 --no-cache",
+        "build": "rm -rf dist && parcel build src/index.html"
     },
     "dependencies": {
+        "downloadjs": "1.4.7",
+        "file-saver": "2.0.5",
         "html-to-image": "1.9.0",
+        "normalize.css": "8.0.1",
         "react": "17.0.2",
         "react-app-polyfill": "2.0.0",
         "react-dom": "17.0.2",
