@@ -21,7 +21,7 @@
         "@babel/core": "7.15.8",
         "@parcel/transformer-raw": "2.0.0",
         "@parcel/transformer-sass": "2.0.0",
-        "@types/react": "17.0.31",
+        "@types/react": "17.0.32",
         "@types/react-dom": "17.0.10",
         "parcel": "2.0.0",
         "postcss": "8.3.11",
