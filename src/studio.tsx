@@ -118,31 +118,43 @@ export const Studio = () => {
                 style={{
                     width: size.width,
                     height: size.height,
-                    backgroundColor: values['background-color'],
-                    backgroundImage: !!image ? `url(${image})` : 'none',
                 }}
                 className={`preview${!!image ? ' preview--tinted' : ''}`}
             >
-                <h2
+                <div
+                    className="preview__background"
                     style={{
-                        color: values['title-color'],
-                        fontSize: Number(values['title-size']) || 34,
-                        fontFamily: values['title-font'],
+                        filter: `blur(${values['background-blur']}px)`,
+                        backgroundColor: values['background-color'],
+                        backgroundImage: !!image ? `url(${image})` : 'none',
                     }}
-                >
-                    {values.title || "Hi, I'm Atanas Atanasov"}
-                </h2>
+                />
 
-                <p
-                    style={{
-                        color: values['subtitle-color'],
-                        fontSize: Number(values['subtitle-size']) || 14,
-                        fontFamily: values['subtitle-font'],
-                    }}
-                >
-                    {values.subtitle ||
-                        'Senior Web Developer ~ Procrastinator ~ Father'}
-                </p>
+                <div className="preview__content">
+                    {!!values.title && (
+                        <h2
+                            style={{
+                                color: values['title-color'],
+                                fontSize: Number(values['title-size']) || 34,
+                                fontFamily: values['title-font'],
+                            }}
+                        >
+                            {values.title}
+                        </h2>
+                    )}
+
+                    {!!values.subtitle && (
+                        <p
+                            style={{
+                                color: values['subtitle-color'],
+                                fontSize: Number(values['subtitle-size']) || 14,
+                                fontFamily: values['subtitle-font'],
+                            }}
+                        >
+                            {values.subtitle}
+                        </p>
+                    )}
+                </div>
             </div>
 
             <form onSubmit={handleSubmit(() => onDownload(node.current))}>
@@ -190,7 +202,7 @@ export const Studio = () => {
                 ))}
 
                 <div className="form-actions">
-                    <button type="submit">Finish</button>
+                    <button type="submit">Download</button>
                 </div>
             </form>
         </>

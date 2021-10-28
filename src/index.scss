@@ -37,6 +37,10 @@ form,
     margin: 0 -0.5rem;
 }
 
+form {
+    padding-bottom: 1rem;
+}
+
 .form-row {
     display: flex;
     flex-flow: row wrap;
@@ -124,23 +128,49 @@ form,
 }
 
 .preview {
-    text-align: center;
-    display: flex;
-    flex-flow: row wrap;
-    align-items: center;
-    align-content: center;
-    justify-content: center;
     position: relative;
     left: 50%;
     border: 1px solid;
     margin-bottom: 1rem;
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
-    background-size: cover;
+
     transform: translateX(-50%);
 
     * {
         width: 100%;
         flex: 0 0 100%;
+    }
+
+    &:empty {
+        background: none !important;
+        border: 1px solid;
+
+        &::before {
+            content: 'EMPTY';
+        }
+    }
+
+    &__content {
+        text-align: center;
+        display: flex;
+        flex-flow: row wrap;
+        align-items: center;
+        align-content: center;
+        justify-content: center;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 2;
+    }
+
+    &__background {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        z-index: 1;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        background-size: cover;
     }
 }
