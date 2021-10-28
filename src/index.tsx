@@ -1,5 +1,3 @@
-// https://github.com/bubkoo/html-to-image
-
 import 'react-app-polyfill/ie11';
 import 'normalize.css';
 

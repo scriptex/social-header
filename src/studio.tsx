@@ -1,45 +1,24 @@
-// https://github.com/bubkoo/html-to-image
-
 import 'react-app-polyfill/ie11';
 import 'normalize.css';
 
 import * as React from 'react';
 import download from 'downloadjs';
-import { saveAs } from 'file-saver';
+import html2canvas from 'html2canvas';
 import { useForm } from 'react-hook-form';
+import { useDebouncedCallback } from 'use-debounce';
 
-import { sizes, fieldGroups, downloadMethods } from './settings';
+import { sizes, fieldGroups } from './settings';
 
-const onDownload = (
-    type: string,
-    node: HTMLElement | null,
-    size: Record<'width' | 'height', number>,
-) => {
+const onDownload = async (node: HTMLElement | null) => {
     if (!node) {
         return;
     }
 
-    console.log(size);
-
-    const promise = downloadMethods[type](node, {
-        ...size,
+    const canvas = await html2canvas(node, {
+        useCORS: true,
     });
 
-    if (type === 'PNG') {
-        promise.then((data: string) => download(data, 'social-header.png'));
-    }
-
-    if (type === 'JPEG') {
-        promise.then((data: string) => download(data, 'social-header.jpg'));
-    }
-
-    if (type === 'SVG') {
-        promise.then((data: string) => download(data, 'social-header.svg'));
-    }
-
-    if (type === 'Blob') {
-        promise.then((data: Blob) => saveAs(data, 'social-header.png'));
-    }
+    download(canvas.toDataURL(), 'social-header.png');
 };
 
 const defaultValues: Record<string, string> = fieldGroups
@@ -47,18 +26,8 @@ const defaultValues: Record<string, string> = fieldGroups
     .reduce((result, group) => [...result, ...group.fields], [])
     .reduce((result, field) => ({ ...result, [field.name]: field.value }), {});
 
-const onFileUpload = (
-    event: React.ChangeEvent<HTMLInputElement>,
-    callback: (base64: string) => void,
-) => {
-    const file = event.target.files?.[0];
-    const reader = new FileReader();
-
-    reader.onload = () => callback(reader.result?.toString() || '');
-    reader.readAsDataURL(file as any);
-};
-
 export const Studio = () => {
+    const node = React.useRef<HTMLDivElement>(null);
     const [image, setImage] = React.useState('');
     const [network, setNetwork] = React.useState('');
     const [customWidth, setCustomWidth] = React.useState(1500);
@@ -69,17 +38,21 @@ export const Studio = () => {
 
     const values = watch();
 
-    const size = React.useMemo(
-        () => sizes[network] || { width: customWidth, height: customHeight },
-        [],
-    );
+    const size: Record<'width' | 'height', number> = sizes[network] || {
+        width: customWidth,
+        height: customHeight,
+    };
 
-    const onSubmit = () =>
-        onDownload(
-            values['download-type'],
-            document.querySelector('.preview'),
-            size,
-        );
+    const onChange = useDebouncedCallback(
+        async (e: React.ChangeEvent<HTMLInputElement>) => {
+            const response = await fetch(
+                `https://source.unsplash.com/${size.width}x${size.height}/?${e.target.value}`,
+            );
+
+            setImage(response.url);
+        },
+        500,
+    );
 
     return (
         <>
@@ -141,13 +114,14 @@ export const Studio = () => {
             )}
 
             <div
+                ref={node}
                 style={{
                     width: size.width,
                     height: size.height,
                     backgroundColor: values['background-color'],
-                    backgroundImage: image ? `url(${image})` : 'none',
+                    backgroundImage: !!image ? `url(${image})` : 'none',
                 }}
-                className="preview"
+                className={`preview${!!image ? ' preview--tinted' : ''}`}
             >
                 <h2
                     style={{
@@ -171,10 +145,18 @@ export const Studio = () => {
                 </p>
             </div>
 
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={handleSubmit(() => onDownload(node.current))}>
                 {fieldGroups.map((group, i) => (
                     <div key={i} className="form-row">
-                        <label>{group.label}</label>
+                        <label>
+                            {group.label}
+
+                            {!!group.sublabel && (
+                                <small>
+                                    <em> {group.sublabel}</em>
+                                </small>
+                            )}
+                        </label>
 
                         {group.fields.map((field, j) =>
                             field.type === 'select' ? (
@@ -196,16 +178,14 @@ export const Studio = () => {
                                         field.value || field.placeholder
                                     }
                                     {...register(field.name)}
-                                    {...(field.type === 'file'
-                                        ? {
-                                              onChange: (e) => {
-                                                  onFileUpload(e, setImage);
-                                              },
-                                          }
+                                    {...(field.type === 'search'
+                                        ? { onChange }
                                         : {})}
                                 />
                             ),
                         )}
+
+                        {!!group.hint && <small>{group.hint}</small>}
                     </div>
                 ))}
 

@@ -1,5 +1,3 @@
-import { toPng, toJpeg, toSvg, toBlob } from 'html-to-image';
-
 export const fonts = [
     'Lexend Deca',
     'Allison',
@@ -13,8 +11,6 @@ export const fonts = [
     'Grechen Fuemen',
     'Permanent Marker',
 ];
-
-export const fileTypes = ['PNG', 'JPEG', 'SVG', 'Blob'];
 
 export const fieldGroups = [
     {
@@ -97,9 +93,11 @@ export const fieldGroups = [
     },
     {
         label: 'Background Image',
+        sublabel: 'from Unsplash',
+        hint: 'Comma separated list of categories',
         fields: [
             {
-                type: 'file',
+                type: 'search',
                 name: 'background-image',
                 value: '',
             },
@@ -112,17 +110,6 @@ export const fieldGroups = [
                 type: 'color',
                 name: 'background-color',
                 value: '#000000',
-            },
-        ],
-    },
-    {
-        label: 'Download type',
-        fields: [
-            {
-                type: 'select',
-                name: 'download-type',
-                value: 'PNG',
-                options: fileTypes,
             },
         ],
     },
@@ -149,11 +136,4 @@ export const sizes = {
         width: 1920,
         height: 384,
     },
-};
-
-export const downloadMethods = {
-    PNG: toPng,
-    JPEG: toJpeg,
-    SVG: toSvg,
-    Blob: toBlob,
 };
