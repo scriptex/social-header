@@ -2,38 +2,13 @@ import 'react-app-polyfill/ie11';
 import 'normalize.css';
 
 import * as React from 'react';
-import download from 'downloadjs';
-import html2canvas from 'html2canvas';
 import { useForm } from 'react-hook-form';
 import { useDebouncedCallback } from 'use-debounce';
 
-import { sizes, fieldGroups, Field, FieldGroup } from './settings';
-
-const onDownload = async (node: HTMLElement | null) => {
-    if (!node) {
-        return;
-    }
-
-    const canvas = await html2canvas(node, {
-        useCORS: true,
-    });
-
-    download(canvas.toDataURL(), 'social-header.png');
-};
-
-const defaultValues: Record<string, string> = fieldGroups
-    .flat()
-    .reduce(
-        (result: Field[], group: FieldGroup) => [...result, ...group.fields],
-        [],
-    )
-    .reduce(
-        (result: Record<string, string>, field: Field) => ({
-            ...result,
-            [field.name]: field.value,
-        }),
-        {},
-    );
+import { Hint } from './hint';
+import { Loader } from './loader';
+import { onDownload } from './utils';
+import { sizes, Field, fieldGroups, defaultValues } from './settings';
 
 export const Studio = () => {
     const node = React.useRef<HTMLDivElement>(null);
@@ -45,6 +20,9 @@ export const Studio = () => {
         defaultValues,
     });
 
+    const [error, setError] = React.useState(false);
+    const [loading, setLoading] = React.useState(false);
+
     const values = watch();
 
     const size: Record<'width' | 'height', number> = sizes[network] || {
@@ -54,17 +32,28 @@ export const Studio = () => {
 
     const onChange = useDebouncedCallback(
         async (e: React.ChangeEvent<HTMLInputElement>) => {
+            setError(false);
+            setLoading(true);
+
             const response = await fetch(
                 `https://source.unsplash.com/${size.width}x${size.height}/?${e.target.value}`,
-            );
+            ).catch(() => {
+                setError(true);
+
+                return {
+                    url: '',
+                };
+            });
 
             setImage(response.url);
+
+            setLoading(false);
         },
         500,
     );
 
     return (
-        <>
+        <div className="studio">
             <h1>Social Header Studio</h1>
 
             <h2>Build your own custom header image for any social network.</h2>
@@ -130,6 +119,8 @@ export const Studio = () => {
                 }}
                 className={`preview${!!image ? ' preview--tinted' : ''}`}
             >
+                {loading && <Loader />}
+
                 <div
                     className="preview__background"
                     style={{
@@ -172,11 +163,13 @@ export const Studio = () => {
                         <label>
                             {group.label}
 
-                            {!!group.sublabel && (
+                            {!!group.labelHint && (
                                 <small>
-                                    <em> {group.sublabel}</em>
+                                    <em> {group.labelHint}</em>
                                 </small>
                             )}
+
+                            <Hint group={group} values={values} />
                         </label>
 
                         {group.fields.map((field: Field, j) =>
@@ -200,7 +193,13 @@ export const Studio = () => {
                                     }
                                     {...register(field.name)}
                                     {...(field.type === 'search'
-                                        ? { onChange }
+                                        ? {
+                                              onChange,
+                                              disabled: loading,
+                                              className: error
+                                                  ? 'has--error'
+                                                  : undefined,
+                                          }
                                         : {})}
                                 />
                             ),
@@ -214,6 +213,6 @@ export const Studio = () => {
                     <button type="submit">Download</button>
                 </div>
             </form>
-        </>
+        </div>
     );
 };

@@ -12,7 +12,7 @@ export interface FieldGroup {
     hint?: string;
     label: string;
     fields: Field[];
-    sublabel?: string;
+    labelHint?: string;
 }
 
 export const fonts = [
@@ -32,6 +32,7 @@ export const fonts = [
 export const fieldGroups: FieldGroup[] = [
     {
         label: 'Title',
+        labelHint: 'Font size',
         fields: [
             {
                 name: 'title',
@@ -71,6 +72,7 @@ export const fieldGroups: FieldGroup[] = [
     },
     {
         label: 'Subtitle',
+        labelHint: 'Font size',
         fields: [
             {
                 name: 'subtitle',
@@ -110,7 +112,7 @@ export const fieldGroups: FieldGroup[] = [
     },
     {
         label: 'Background Image',
-        sublabel: 'from Unsplash',
+        labelHint: 'from Unsplash',
         hint: 'Comma separated list of categories',
         fields: [
             {
@@ -143,6 +145,20 @@ export const fieldGroups: FieldGroup[] = [
         ],
     },
 ];
+
+export const defaultValues: Record<string, string> = fieldGroups
+    .flat()
+    .reduce(
+        (result: Field[], group: FieldGroup) => [...result, ...group.fields],
+        [],
+    )
+    .reduce(
+        (result: Record<string, string>, field: Field) => ({
+            ...result,
+            [field.name]: field.value,
+        }),
+        {},
+    );
 
 export const sizes: Record<string, Record<'width' | 'height', number>> = {
     fb: {
