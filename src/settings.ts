@@ -1,3 +1,20 @@
+export interface Field {
+    min?: string;
+    max?: string;
+    name: string;
+    type: string;
+    value: string;
+    options?: string[];
+    placeholder?: string;
+}
+
+export interface FieldGroup {
+    hint?: string;
+    label: string;
+    fields: Field[];
+    sublabel?: string;
+}
+
 export const fonts = [
     'Lexend Deca',
     'Allison',
@@ -12,7 +29,7 @@ export const fonts = [
     'Permanent Marker',
 ];
 
-export const fieldGroups = [
+export const fieldGroups: FieldGroup[] = [
     {
         label: 'Title',
         fields: [
@@ -117,17 +134,17 @@ export const fieldGroups = [
         label: 'Background Blur',
         fields: [
             {
-                min: 0,
-                max: 10,
+                min: '0',
+                max: '10',
                 type: 'range',
                 name: 'background-blur',
-                value: 0,
+                value: '0',
             },
         ],
     },
 ];
 
-export const sizes = {
+export const sizes: Record<string, Record<'width' | 'height', number>> = {
     fb: {
         width: 820,
         height: 312,

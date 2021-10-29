@@ -7,7 +7,7 @@ import html2canvas from 'html2canvas';
 import { useForm } from 'react-hook-form';
 import { useDebouncedCallback } from 'use-debounce';
 
-import { sizes, fieldGroups } from './settings';
+import { sizes, fieldGroups, Field, FieldGroup } from './settings';
 
 const onDownload = async (node: HTMLElement | null) => {
     if (!node) {
@@ -23,8 +23,17 @@ const onDownload = async (node: HTMLElement | null) => {
 
 const defaultValues: Record<string, string> = fieldGroups
     .flat()
-    .reduce((result, group) => [...result, ...group.fields], [])
-    .reduce((result, field) => ({ ...result, [field.name]: field.value }), {});
+    .reduce(
+        (result: Field[], group: FieldGroup) => [...result, ...group.fields],
+        [],
+    )
+    .reduce(
+        (result: Record<string, string>, field: Field) => ({
+            ...result,
+            [field.name]: field.value,
+        }),
+        {},
+    );
 
 export const Studio = () => {
     const node = React.useRef<HTMLDivElement>(null);
@@ -170,10 +179,10 @@ export const Studio = () => {
                             )}
                         </label>
 
-                        {group.fields.map((field, j) =>
+                        {group.fields.map((field: Field, j) =>
                             field.type === 'select' ? (
                                 <select {...register(field.name)} key={j}>
-                                    {field.options.map((option, k) => (
+                                    {field.options?.map((option, k) => (
                                         <option value={option} key={k}>
                                             {option}
                                         </option>
