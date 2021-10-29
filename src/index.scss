@@ -7,23 +7,26 @@
     }
 }
 
-html,
-body,
-#root {
-    height: 100%;
-}
-
 body {
-    font-family: monospace;
+    font-family: 'ubuntu mono';
+    font-size: 1rem;
+    line-height: 1.2;
+    color: #fff;
+    background: linear-gradient(to right, #159957, #155799);
 }
 
 h1,
 h2 {
+    font-family: 'Righteous';
     text-align: center;
     margin: 0 0 1rem;
 }
 
 #root {
+    overflow: hidden;
+}
+
+.app {
     max-width: 50rem;
     padding: 1rem;
     margin: auto;
@@ -39,9 +42,33 @@ form,
 
 form {
     padding-bottom: 1rem;
+
+    button {
+        font-size: 2rem;
+        line-height: 1.2;
+        color: #fff;
+        position: relative;
+        top: 0;
+        padding: 0.5rem 2rem;
+        border: 0;
+        background: #333;
+        border-radius: 0.5rem;
+        box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
+        cursor: pointer;
+        transition: top 0.1s ease-in-out;
+
+        &:hover {
+            background-color: #3a3a3a;
+        }
+
+        &:active {
+            top: 0.125rem;
+        }
+    }
 }
 
 .form-row {
+    color: #333;
     display: flex;
     flex-flow: row wrap;
     align-items: flex-start;
@@ -50,12 +77,26 @@ form {
     flex: 0 0 calc(100% / 3);
     padding: 0 0.5rem 1rem;
 
+    small {
+        color: #fff;
+        margin: 0.5rem 0;
+    }
+
     label {
         font-size: 0.875rem;
         line-height: 1.25;
-        display: block;
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        justify-content: space-between;
+        color: #fff;
         flex: 0 0 100%;
         margin-bottom: 0.5rem;
+
+        small {
+            display: block;
+            margin: 0 0 0 auto;
+        }
     }
 
     input,
@@ -63,13 +104,21 @@ form {
         font-size: 0.75rem;
         line-height: 2;
         color: inherit;
-        height: 2rem;
+        height: 2.5rem;
         display: block;
-        padding: 0.1875rem 0.5rem;
+        padding: 0.4375rem 0.5rem;
         border: 1px solid;
         background: #fff;
-        border-radius: 0;
+        border-radius: 0.5rem;
         box-shadow: none;
+
+        &.has--error {
+            background-color: rgba(#f00, 0.2);
+        }
+
+        &[disabled] {
+            background-color: #ccc;
+        }
 
         &:only-of-type {
             width: 100%;
@@ -91,8 +140,12 @@ form {
         }
 
         &[type='color'] {
+            border-radius: 0.625rem;
+            cursor: pointer;
+
             &::-webkit-color-swatch {
                 border: none;
+                border-radius: 0.5rem;
             }
 
             &::-webkit-color-swatch-wrapper {
@@ -102,6 +155,7 @@ form {
             &::-moz-color-swatch,
             &::-moz-focus-inner {
                 border: none;
+                border-radius: 0.5rem;
             }
 
             &::-moz-focus-inner {
@@ -132,12 +186,25 @@ form {
     left: 50%;
     border: 1px solid;
     margin-bottom: 1rem;
-
     transform: translateX(-50%);
 
     * {
         width: 100%;
         flex: 0 0 100%;
+    }
+
+    svg {
+        width: 100px;
+        height: 100px;
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 3;
+        margin: auto;
+        stroke: currentColor;
     }
 
     &:empty {
@@ -172,5 +239,18 @@ form {
         background-repeat: no-repeat;
         background-position: 50% 50%;
         background-size: cover;
+    }
+}
+
+social-links {
+    display: block;
+    padding: 1rem 0;
+}
+
+@media (max-width: 768px) {
+    .form-row,
+    .form-group .form-row {
+        max-width: 100%;
+        flex: 0 0 100%;
     }
 }

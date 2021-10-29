@@ -15,16 +15,19 @@
         "react-dom": "17.0.2",
         "react-google-font-loader": "1.1.0",
         "react-hook-form": "7.18.0",
+        "scriptex-socials": "1.5.1",
         "use-debounce": "7.0.0"
     },
     "devDependencies": {
         "@babel/core": "7.15.8",
         "@parcel/transformer-raw": "2.0.0",
         "@parcel/transformer-sass": "2.0.0",
+        "@types/downloadjs": "1.4.2",
         "@types/react": "17.0.33",
         "@types/react-dom": "17.0.10",
         "parcel": "2.0.0",
         "postcss": "8.3.11",
+        "tslib": "2.3.1",
         "typescript": "4.4.4"
     }
 }

@@ -1,3 +1,20 @@
+export interface Field {
+    min?: string;
+    max?: string;
+    name: string;
+    type: string;
+    value: string;
+    options?: string[];
+    placeholder?: string;
+}
+
+export interface FieldGroup {
+    hint?: string;
+    label: string;
+    fields: Field[];
+    labelHint?: string;
+}
+
 export const fonts = [
     'Lexend Deca',
     'Allison',
@@ -12,9 +29,10 @@ export const fonts = [
     'Permanent Marker',
 ];
 
-export const fieldGroups = [
+export const fieldGroups: FieldGroup[] = [
     {
         label: 'Title',
+        labelHint: 'Font size',
         fields: [
             {
                 name: 'title',
@@ -54,6 +72,7 @@ export const fieldGroups = [
     },
     {
         label: 'Subtitle',
+        labelHint: 'Font size',
         fields: [
             {
                 name: 'subtitle',
@@ -93,7 +112,7 @@ export const fieldGroups = [
     },
     {
         label: 'Background Image',
-        sublabel: 'from Unsplash',
+        labelHint: 'from Unsplash',
         hint: 'Comma separated list of categories',
         fields: [
             {
@@ -117,17 +136,31 @@ export const fieldGroups = [
         label: 'Background Blur',
         fields: [
             {
-                min: 0,
-                max: 10,
+                min: '0',
+                max: '10',
                 type: 'range',
                 name: 'background-blur',
-                value: 0,
+                value: '0',
             },
         ],
     },
 ];
 
-export const sizes = {
+export const defaultValues: Record<string, string> = fieldGroups
+    .flat()
+    .reduce(
+        (result: Field[], group: FieldGroup) => [...result, ...group.fields],
+        [],
+    )
+    .reduce(
+        (result: Record<string, string>, field: Field) => ({
+            ...result,
+            [field.name]: field.value,
+        }),
+        {},
+    );
+
+export const sizes: Record<string, Record<'width' | 'height', number>> = {
     fb: {
         width: 820,
         height: 312,

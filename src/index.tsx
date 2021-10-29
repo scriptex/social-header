@@ -1,4 +1,5 @@
 import 'react-app-polyfill/ie11';
+import 'scriptex-socials';
 import 'normalize.css';
 
 import * as React from 'react';
@@ -14,7 +15,11 @@ const App = () => (
             fonts={fonts.map((font) => ({ font, weights: [400] }))}
         />
 
-        <Studio />
+        <div className="app">
+            <Studio />
+        </div>
+
+        <social-links></social-links>
     </>
 );
 
