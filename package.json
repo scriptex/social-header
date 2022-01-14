@@ -14,18 +14,18 @@
         "react-app-polyfill": "3.0.0",
         "react-dom": "17.0.2",
         "react-google-font-loader": "1.1.0",
-        "react-hook-form": "7.23.0",
+        "react-hook-form": "7.24.0",
         "scriptex-socials": "1.5.1",
         "use-debounce": "7.0.1"
     },
     "devDependencies": {
         "@babel/core": "7.16.7",
-        "@parcel/transformer-raw": "2.1.1",
-        "@parcel/transformer-sass": "2.1.1",
+        "@parcel/transformer-raw": "2.2.0",
+        "@parcel/transformer-sass": "2.2.0",
         "@types/downloadjs": "1.4.3",
         "@types/react": "17.0.38",
         "@types/react-dom": "17.0.11",
-        "parcel": "2.1.1",
+        "parcel": "2.2.0",
         "postcss": "8.4.5",
         "tslib": "2.3.1",
         "typescript": "4.5.4"
