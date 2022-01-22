@@ -8,7 +8,7 @@
     },
     "dependencies": {
         "downloadjs": "1.4.7",
-        "html2canvas": "1.4.0",
+        "html2canvas": "1.4.1",
         "normalize.css": "8.0.1",
         "react": "17.0.2",
         "react-app-polyfill": "3.0.0",
