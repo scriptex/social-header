@@ -20,7 +20,7 @@
     },
     "devDependencies": {
         "@babel/core": "7.17.2",
-        "@parcel/transformer-raw": "2.2.1",
+        "@parcel/transformer-raw": "2.3.0",
         "@parcel/transformer-sass": "2.2.1",
         "@types/downloadjs": "1.4.3",
         "@types/react": "17.0.39",
