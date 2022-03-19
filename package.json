@@ -23,7 +23,7 @@
         "@parcel/transformer-raw": "2.3.2",
         "@parcel/transformer-sass": "2.3.2",
         "@types/downloadjs": "1.4.3",
-        "@types/react": "17.0.40",
+        "@types/react": "17.0.41",
         "@types/react-dom": "17.0.13",
         "parcel": "2.3.2",
         "postcss": "8.4.12",
