@@ -15,7 +15,7 @@
         "react-dom": "18.2.0",
         "react-google-font-loader": "1.1.0",
         "react-hook-form": "7.34.2",
-        "scriptex-socials": "1.5.1",
+        "scriptex-socials": "1.6.0",
         "use-debounce": "8.0.4"
     },
     "devDependencies": {
