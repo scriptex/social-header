@@ -10,17 +10,15 @@ import { fonts } from './settings';
 import { Studio } from './studio';
 
 const App = () => (
-    <>
-        <GoogleFontLoader
-            fonts={fonts.map((font) => ({ font, weights: [400] }))}
-        />
+	<>
+		<GoogleFontLoader fonts={fonts.map(font => ({ font, weights: [400] }))} />
 
-        <div className="app">
-            <Studio />
-        </div>
+		<div className="app">
+			<Studio />
+		</div>
 
-        <social-links></social-links>
-    </>
+		<social-links></social-links>
+	</>
 );
 
 ReactDOM.render(<App />, document.getElementById('root'));

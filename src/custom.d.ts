@@ -1,5 +1,5 @@
 declare namespace JSX {
-    interface IntrinsicElements {
-        'social-links': any;
-    }
+	interface IntrinsicElements {
+		'social-links': any;
+	}
 }
