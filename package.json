@@ -47,7 +47,7 @@
 		"@types/react-dom": "18.0.8",
 		"parcel": "2.7.0",
 		"postcss": "8.4.18",
-		"tslib": "2.4.0",
+		"tslib": "2.4.1",
 		"typescript": "4.8.4"
 	}
 }
