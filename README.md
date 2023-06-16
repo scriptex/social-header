@@ -24,7 +24,7 @@
 ![GitHub top language](https://img.shields.io/github/languages/top/scriptex/social-header?style=plastic)
 ![GitHub last commit](https://img.shields.io/github/last-commit/scriptex/social-header?style=plastic)
 
-Use the app [here](https://social-header.tk)
+Use the app [here](https://social-header.atanas.info)
 
 ## TODO
 
