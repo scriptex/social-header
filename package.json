@@ -44,7 +44,7 @@
 		"@parcel/transformer-sass": "2.9.3",
 		"@types/downloadjs": "1.4.3",
 		"@types/react": "18.2.14",
-		"@types/react-dom": "18.2.6",
+		"@types/react-dom": "18.2.7",
 		"parcel": "2.9.3",
 		"postcss": "8.4.25",
 		"tslib": "2.6.0",
