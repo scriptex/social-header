@@ -42,7 +42,7 @@
 		"@babel/core": "7.23.2",
 		"@parcel/transformer-raw": "2.10.0",
 		"@parcel/transformer-sass": "2.10.0",
-		"@types/downloadjs": "1.4.4",
+		"@types/downloadjs": "1.4.5",
 		"@types/react": "18.2.28",
 		"@types/react-dom": "18.2.13",
 		"parcel": "2.10.0",
