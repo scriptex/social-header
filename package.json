@@ -40,12 +40,12 @@
 	},
 	"devDependencies": {
 		"@babel/core": "7.23.2",
-		"@parcel/transformer-raw": "2.10.1",
-		"@parcel/transformer-sass": "2.10.1",
+		"@parcel/transformer-raw": "2.10.2",
+		"@parcel/transformer-sass": "2.10.2",
 		"@types/downloadjs": "1.4.5",
 		"@types/react": "18.2.34",
 		"@types/react-dom": "18.2.14",
-		"parcel": "2.10.1",
+		"parcel": "2.10.2",
 		"postcss": "8.4.31",
 		"tslib": "2.6.2",
 		"typescript": "5.2.2"
