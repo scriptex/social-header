@@ -39,7 +39,7 @@
 		"use-debounce": "10.0.0"
 	},
 	"devDependencies": {
-		"@babel/core": "7.23.2",
+		"@babel/core": "7.23.3",
 		"@parcel/transformer-raw": "2.10.2",
 		"@parcel/transformer-sass": "2.10.2",
 		"@types/downloadjs": "1.4.6",
