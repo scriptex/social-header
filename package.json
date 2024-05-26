@@ -36,7 +36,7 @@
 		"react-google-font-loader": "1.1.0",
 		"react-hook-form": "7.51.5",
 		"scriptex-socials": "1.8.0",
-		"use-debounce": "10.0.0"
+		"use-debounce": "10.0.1"
 	},
 	"devDependencies": {
 		"@babel/core": "7.24.6",
