@@ -34,7 +34,7 @@
 		"react-app-polyfill": "3.0.0",
 		"react-dom": "18.3.1",
 		"react-google-font-loader": "1.1.0",
-		"react-hook-form": "7.53.2",
+		"react-hook-form": "7.54.0",
 		"scriptex-socials": "1.8.0",
 		"use-debounce": "10.0.4"
 	},
@@ -48,6 +48,6 @@
 		"parcel": "2.13.0",
 		"postcss": "8.4.49",
 		"tslib": "2.8.1",
-		"typescript": "5.6.3"
+		"typescript": "5.7.2"
 	}
 }
