@@ -3,7 +3,7 @@ import 'scriptex-socials';
 import 'normalize.css';
 
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import GoogleFontLoader from 'react-google-font-loader';
 
 import { fonts } from './settings';
@@ -21,4 +21,6 @@ const App = () => (
 	</>
 );
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const root = createRoot(document.getElementById('root')!);
+
+root.render(<App />);
