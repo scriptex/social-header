@@ -39,11 +39,11 @@
 		"use-debounce": "10.0.4"
 	},
 	"devDependencies": {
-		"@babel/core": "7.26.9",
+		"@babel/core": "7.26.10",
 		"@parcel/transformer-raw": "2.13.3",
 		"@parcel/transformer-sass": "2.13.3",
 		"@types/downloadjs": "1.4.6",
-		"@types/react": "19.0.10",
+		"@types/react": "19.0.12",
 		"@types/react-dom": "19.0.4",
 		"parcel": "2.13.3",
 		"postcss": "8.5.3",
