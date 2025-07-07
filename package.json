@@ -34,12 +34,12 @@
 		"react-app-polyfill": "3.0.0",
 		"react-dom": "19.1.0",
 		"react-google-font-loader": "1.1.0",
-		"react-hook-form": "7.58.1",
-		"scriptex-socials": "1.8.0",
+		"react-hook-form": "7.60.0",
+		"scriptex-socials": "1.9.0",
 		"use-debounce": "10.0.5"
 	},
 	"devDependencies": {
-		"@babel/core": "7.27.7",
+		"@babel/core": "7.28.0",
 		"@parcel/transformer-raw": "2.15.4",
 		"@parcel/transformer-sass": "2.15.4",
 		"@types/downloadjs": "1.4.6",
