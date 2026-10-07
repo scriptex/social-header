@@ -34,7 +34,7 @@
 		"react-app-polyfill": "3.0.0",
 		"react-dom": "19.3.0",
 		"react-google-font-loader": "1.1.0",
-		"react-hook-form": "7.88.0",
+		"react-hook-form": "7.89.0",
 		"scriptex-socials": "1.10.1",
 		"use-debounce": "10.1.1"
 	},
